@@ -10,21 +10,14 @@ namespace DAL.Implementations
 {
     public class UnidadDeTrabajo : IUnidadDeTrabajo
     {
-        public ICategoryDAL CategoryDAL { get; set; }
-        public ISupplierDAL SupplierDAL { get; set; }
-        public IProductDAL ProductDAL { get; set; }
+        public ICultureDAL CultureDAL { get; set; }
 
-        private NorthWindContext _northWindContext;
-
-        public UnidadDeTrabajo(NorthWindContext northWindContext,
-                        ICategoryDAL categoryDAL, ISupplierDAL supplierDAL, IProductDAL productDAL
-                       
-            ) 
+        private Adventureworks2016Context _Context;
+        public UnidadDeTrabajo(Adventureworks2016Context Context,
+                        ICultureDAL categoryDAL) 
         {
-                this._northWindContext = northWindContext;
-                this.CategoryDAL = categoryDAL; 
-                this.SupplierDAL = supplierDAL;
-                this.ProductDAL = productDAL;
+                this._Context = Context;
+                this.CultureDAL = categoryDAL;
         }
        
 
@@ -32,7 +25,7 @@ namespace DAL.Implementations
         {
             try
             {
-                _northWindContext.SaveChanges();
+                _Context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -44,7 +37,7 @@ namespace DAL.Implementations
 
         public void Dispose()
         {
-            this._northWindContext.Dispose();
+            this._Context.Dispose();
         }
     }
 }

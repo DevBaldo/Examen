@@ -35,7 +35,7 @@ namespace DAL.Implementations
             }
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(string id)
         {
 
             return _Context.Set<TEntity>().Find(id);
